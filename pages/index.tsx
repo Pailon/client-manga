@@ -35,9 +35,11 @@ const Home: NextPage = () => {
 
             <Input value={url} onChange={(e)=>setUrl(e.target.value)} className="mb-3 mt-3" size="large" placeholder="Ссылка на главу" prefix={<SearchOutlined />} />
 
-            <Button onClick={searchManga} disabled={!url} size="large" type="primary" className='border-primary'>
-                Начать обработку
-            </Button>
+            <div className="flex justify-center">
+                <Button onClick={searchManga} disabled={!url} size="large" type="primary" className='max-w-xs'>
+                    Начать обработку
+                </Button>
+            </div>
             {isError ? <Typography className="mt-5">Произошла ошибка, попробуйте еще раз или обратитесь к создателю</Typography> : <></>}
         </div>
     );
