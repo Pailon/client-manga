@@ -13,14 +13,13 @@ const Home: NextPage = () => {
     const searchManga = async () => {
         try{
             setIsError(false)
-            // axios.get(`http://127.0.0.1:5000/image.jpeg`)
             setLoading(true)
-            const {data} = await axios.post('http://127.0.0.1:5000', {
+            const {data} = await axios.post('http://185.241.54.160:8080', {
                 url
             })
             setLoading(false)
             let element = document.createElement('a');
-            element.setAttribute('href', `http://127.0.0.1:5000/${data}`);
+            element.setAttribute('href', `http://185.241.54.160:8080/${data}`);
             element.setAttribute('download', data);
             console.log(element)
             document.body.appendChild(element);
@@ -29,6 +28,9 @@ const Home: NextPage = () => {
         }catch (e){
             setIsError(true)
             setUrl('')
+
+        }finally {
+            setLoading(false)
         }
     }
     return (
@@ -54,8 +56,7 @@ const Home: NextPage = () => {
                     </Button>
                 </div>
             }
-            {isError ? <Typography className="mt-5 color-red">Произошла ошибка, попробуйте еще раз или обратитесь к создателю</Typography> : <></>}
-            {/* {resUrl ? <a href={`http://127.0.0.1:5000/${resUrl}`}>save</a> : <></>} */}
+            {isError ? <Typography className="text-danger mt-5">Произошла ошибка, попробуйте еще раз или обратитесь к создателю</Typography> : <></>}
         </div>
     );
 };
